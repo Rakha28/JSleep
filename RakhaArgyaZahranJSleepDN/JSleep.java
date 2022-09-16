@@ -15,21 +15,21 @@ public class JSleep {
         return true;
     }
     public static float getDiscountPercentage(int beforeDiscount, int afterDiscount){
-        if (beforeDiscount <= afterDiscount){
+        if (beforeDiscount < afterDiscount){
             return 0.0f;
         } else {
-            return (float) (beforeDiscount-afterDiscount)/beforeDiscount;
+            return (float) (beforeDiscount-afterDiscount)/10.f;
         }
     }
     public static int getDiscountedPrice(int price, float discountPercentage){
-        if (discountPercentage >= 100.0f){
+        if (discountPercentage > 100.0f){
             return 0;
         } else {
-            return price - (int) (price * discountPercentage);
+            return (int) (price * (1 - (discountPercentage / 100.0f)));
         }
     }
     public static int getOriginalPrice(int discountedPrice, float discountPercentage){
-        return discountedPrice + (int) (discountedPrice * discountPercentage);
+        return (int) (discountedPrice / ( 1.0f- (discountPercentage / 100.0f)));
     }
     public static float getAdminFeePercentage(){
         return 0.05f;
