@@ -15,4 +15,5 @@ public class JSleep {
         Room room = new Room("hotel", 30, price, Facility.AC);
         return room;
     }
+
 }
