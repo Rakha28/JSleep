@@ -1,7 +1,7 @@
 package RakhaArgyaZahranJSleepDN;
 
 
-public class Voucher
+public class Voucher extends Serializable
 {
     public Type type;
     public double cut;
@@ -12,10 +12,12 @@ public class Voucher
     
     
     
-    public Voucher(String name,int code,Type type , double minimum ,double cut){
+    public Voucher(int id,String name,int code,Type type , boolean used, double minimum ,double cut){
+        super(id);
         this.name = name;
-        this.code = code;
+        this.code = code;   
         this.type = type;
+        this.used = used;
         this.minimum = minimum;
         this.cut = cut;
     }

@@ -1,6 +1,12 @@
 package RakhaArgyaZahranJSleepDN;
 
-public class Account
+public class Account extends Serializable
 {
     public String name, email, password;
+    public Account(int id, String name, String email, String password){
+        super(id);
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
 }
