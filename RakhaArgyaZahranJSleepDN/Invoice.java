@@ -9,6 +9,16 @@ package RakhaArgyaZahranJSleepDN;
  */
 public class Invoice extends Serializable
 {
+    public enum RoomRating{
+        NONE, BAD, NEUTRAL, GOOD
+    };
+    
+    public enum PaymentStatus{ 
+        FAILED, WAITING, SUCCESS
+    };
+    
+    public PaymentStatus status;
+    public RoomRating rating;
     public int buyerId, renterId;
     public String time;
     
@@ -17,18 +27,20 @@ public class Invoice extends Serializable
         this.buyerId = buyerId;
         this.renterId = renterId;
         this.time = time;
+        this.rating = RoomRating.NONE;
+        this.status = PaymentStatus.WAITING;
     }
+    
     public Invoice(int id, Account buyer, Renter renter, String time){
         super(id);
         this.buyerId = buyer.id;
         this.renterId = renter.id;
         this.time = time;
+        this.rating = RoomRating.NONE;
+        this.status = PaymentStatus.WAITING;
     }
-    public String print()
-    {
-        String print = "Buyer Id: " + buyerId +
-                        "\nRenter Id: " + renterId +
-                        "\nTime: " + time;
-        return print;
+    
+    public String print(){
+        return "BuyerId = " + this.buyerId + "  RenterId = " + this.renterId + "   Time = " + this.time;
     }
 }

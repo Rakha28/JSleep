@@ -1,18 +1,34 @@
 package RakhaArgyaZahranJSleepDN;
 
 
+/**
+ * Write a description of class Room here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
 public class Room extends Serializable
 {
     public int size;
-    public String name;
+    public String name, address;
     public Facility facility;
     public Price price;
-    public Room(int id, String name, int size, Price price, Facility facility)
-    {
-        super(id);
-        this.name = name;
-        this.size = size;
-        this.price = price;
-        this.facility = facility;
+    public BedType bedType;
+    public City city;
+    
+   public Room(int id, String name, int size, Price price, Facility facility, City city, String address){
+       super(id); 
+       this.name = name;
+       this.size = size;
+       this.price = price;
+       this.facility = facility;
+       this.city = city;
+       this.address = address;
+       this.bedType = BedType.SINGLE;
     }
+    
+    public String toString(){
+        return "\nName: " + this.name + "\nAddress: " + this.address + "\nSize: " + this.size + "\nFacility: " + this.facility + "\nBed Type: " + this.bedType + "\nCity: " + this.city + "\n" + this.price;    
+    }
+   
 }
