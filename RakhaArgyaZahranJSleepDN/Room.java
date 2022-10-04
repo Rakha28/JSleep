@@ -7,7 +7,7 @@ package RakhaArgyaZahranJSleepDN;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Room extends Serializable
+public class Room extends Serializable implements FileParser
 {
     public int size;
     public String name, address;
@@ -29,6 +29,13 @@ public class Room extends Serializable
     
     public String toString(){
         return "\nName: " + this.name + "\nAddress: " + this.address + "\nSize: " + this.size + "\nFacility: " + this.facility + "\nBed Type: " + this.bedType + "\nCity: " + this.city + "\n" + this.price;    
+    }
+    
+    public Object write(){
+        return null;
+    }
+    public boolean read(String content){
+        return false;
     }
    
 }

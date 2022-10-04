@@ -1,37 +1,28 @@
 package RakhaArgyaZahranJSleepDN;
+import java.util.*;
 
-
-/**
- * Write a description of class Invoice here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class Invoice extends Serializable
 {
-    public enum RoomRating{
-        NONE, BAD, NEUTRAL, GOOD
-    };
-    
-    public enum PaymentStatus{ 
-        FAILED, WAITING, SUCCESS
-    };
-    
+    public enum RoomRating { NONE, BAD, NEUTRAL, GOOD};
+    public enum PaymentStatus { FAILED, WAITING, SUCCESS};
+    public int buyerId;
+    public int renterId;
+    Calendar time = Calendar.getInstance();
     public PaymentStatus status;
     public RoomRating rating;
-    public int buyerId, renterId;
-    public String time;
     
-    protected Invoice(int id, int buyerId, int renterId, String time){
+    protected Invoice(int id, int buyerId, int renterId)
+    {
         super(id);
         this.buyerId = buyerId;
         this.renterId = renterId;
         this.time = time;
-        this.rating = RoomRating.NONE;
         this.status = PaymentStatus.WAITING;
+        this.rating = RoomRating.NONE;
+        
     }
-    
-    public Invoice(int id, Account buyer, Renter renter, String time){
+
+    public Invoice(int id, Account buyer, Renter renter){
         super(id);
         this.buyerId = buyer.id;
         this.renterId = renter.id;
@@ -41,6 +32,12 @@ public class Invoice extends Serializable
     }
     
     public String print(){
-        return "BuyerId = " + this.buyerId + "  RenterId = " + this.renterId + "   Time = " + this.time;
+        String print = "Id : " + super.id +
+                       "\nBuyer Id : " + buyerId + 
+                       "\nRenter Id : " + renterId +
+                       "\ntime : " + time;
+        return print;
     }
+    
+    
 }
