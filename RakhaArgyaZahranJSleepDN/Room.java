@@ -1,12 +1,8 @@
 package RakhaArgyaZahranJSleepDN;
+import java.util.Date;
+import java.util.ArrayList;
 
 
-/**
- * Write a description of class Room here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class Room extends Serializable implements FileParser
 {
     public int size;
@@ -15,6 +11,7 @@ public class Room extends Serializable implements FileParser
     public Price price;
     public BedType bedType;
     public City city;
+    public ArrayList<Date> booked;
     
    public Room(int id, String name, int size, Price price, Facility facility, City city, String address){
        super(id); 
@@ -25,6 +22,7 @@ public class Room extends Serializable implements FileParser
        this.city = city;
        this.address = address;
        this.bedType = BedType.SINGLE;
+       this.booked = new ArrayList<Date>();
     }
     
     public String toString(){

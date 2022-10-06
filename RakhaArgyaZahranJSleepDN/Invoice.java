@@ -1,5 +1,7 @@
 package RakhaArgyaZahranJSleepDN;
 import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Invoice extends Serializable
 {
@@ -7,16 +9,16 @@ public class Invoice extends Serializable
     public enum PaymentStatus { FAILED, WAITING, SUCCESS};
     public int buyerId;
     public int renterId;
-    Calendar time = Calendar.getInstance();
     public PaymentStatus status;
     public RoomRating rating;
+    Date time;
     
     protected Invoice(int id, int buyerId, int renterId)
     {
         super(id);
         this.buyerId = buyerId;
         this.renterId = renterId;
-        this.time = time;
+        this.time = new Date();
         this.status = PaymentStatus.WAITING;
         this.rating = RoomRating.NONE;
         
@@ -26,7 +28,7 @@ public class Invoice extends Serializable
         super(id);
         this.buyerId = buyer.id;
         this.renterId = renter.id;
-        this.time = time;
+        this.time = new Date();
         this.rating = RoomRating.NONE;
         this.status = PaymentStatus.WAITING;
     }
