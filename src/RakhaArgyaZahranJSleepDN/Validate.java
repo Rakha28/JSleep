@@ -10,9 +10,9 @@ public class Validate
         ArrayList arrList = new ArrayList<>();
         
         for(Price LP : list){
-            if((less == true && LP.price <= value)){
+            if((less && LP.price <= value)){
                 arrList.add(LP.price);
-            }else if(less == false && LP.price > value){
+            }else if(!less && LP.price > value){
                 arrList.add(LP.price);
             }
         }

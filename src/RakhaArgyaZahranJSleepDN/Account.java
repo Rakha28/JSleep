@@ -15,10 +15,9 @@ public class Account extends Serializable implements FileParser
     }
     
     public String toString(){
-        String print = "Name: " + name +
+        return "Name: " + name +
                    "\nEmail: " + email +
                    "\nPassword: " + password;
-        return print;
     }
     
     public Object write(){

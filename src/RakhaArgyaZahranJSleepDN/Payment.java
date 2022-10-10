@@ -29,8 +29,7 @@ public class Payment extends Invoice
     public String getTime()
     {
         SimpleDateFormat SDFormat = new SimpleDateFormat("'Formatted Date = 'dd MMMM yyyy");
-        String formattedFrom = SDFormat.format(from.getTime());
-        return formattedFrom;
+        return SDFormat.format(from.getTime());
     }
     
     public String print()

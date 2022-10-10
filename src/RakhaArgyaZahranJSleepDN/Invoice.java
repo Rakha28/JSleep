@@ -1,6 +1,4 @@
 package RakhaArgyaZahranJSleepDN;
-import java.util.*;
-import java.util.Calendar;
 import java.util.Date;
 
 public class Invoice extends Serializable
@@ -34,11 +32,10 @@ public class Invoice extends Serializable
     }
     
     public String print(){
-        String print = "Id : " + super.id +
-                       "\nBuyer Id : " + buyerId + 
+        return "Id : " + super.id +
+                       "\nBuyer Id : " + buyerId +
                        "\nRenter Id : " + renterId +
                        "\ntime : " + time;
-        return print;
     }
     
     

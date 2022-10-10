@@ -23,11 +23,7 @@ public class Voucher extends Serializable implements FileParser
     }
     
     public boolean canApply(Price price ){
-        if(price.price > this.minimum && this.used == false){
-            return true;
-        } else {
-            return false;
-        }
+        return price.price > this.minimum && !this.used;
     }
     
     public boolean isUsed(){
@@ -35,7 +31,7 @@ public class Voucher extends Serializable implements FileParser
     }
     
     public double apply(Price price){
-        if(this.type == type.DISCOUNT){
+        if(this.type == Type.DISCOUNT){
                if(cut > 100){
                    cut = 100;
                }
