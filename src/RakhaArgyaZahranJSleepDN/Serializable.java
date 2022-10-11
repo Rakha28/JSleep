@@ -7,12 +7,12 @@ public class Serializable implements Comparable<Serializable>
     public final int id;
     private static Map<Class<?>,Integer> mapCounter = new HashMap();
     protected Serializable(){
-        if(mapCounter.get(this.getClass()) == null) {
+        if (mapCounter.get(this.getClass()) == null){
             mapCounter.put(this.getClass(), 0);
             this.id = 0;
         }else{
             Integer counter = mapCounter.get(this.getClass());
-            mapCounter.put(this.getClass(), counter + 1);
+            mapCounter.put(this.getClass(), ++counter);
             this.id = counter;
         }
     }
@@ -42,4 +42,6 @@ public class Serializable implements Comparable<Serializable>
         mapCounter.replace(cls,id);
         return mapCounter.get(cls);
     }
+
 }
+

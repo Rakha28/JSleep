@@ -11,7 +11,7 @@ public class Invoice extends Serializable
     public RoomRating rating;
     Date time;
     
-    protected Invoice(int id, int buyerId, int renterId)
+    protected Invoice(int buyerId, int renterId)
     {
         super();
         this.buyerId = buyerId;
