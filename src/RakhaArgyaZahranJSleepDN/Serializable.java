@@ -42,6 +42,5 @@ public class Serializable implements Comparable<Serializable>
         mapCounter.replace(cls,id);
         return mapCounter.get(cls);
     }
-
 }
 

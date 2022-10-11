@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class JSleep
 {
 
-    
     public static void main(String[] args){
         ArrayList<Room> RoomSerialized = new ArrayList<Room>();
 
