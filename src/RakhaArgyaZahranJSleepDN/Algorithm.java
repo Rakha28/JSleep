@@ -85,8 +85,9 @@ public class Algorithm {
         return exists(it, pred);
     }
     public static <T> boolean exists(Iterator<T> iterator, Predicate<T> pred){
-        while (iterator.hasNext()){
-            if (pred.test(iterator.next())){
+        while(iterator.hasNext()){
+            T current = iterator.next();
+            if(pred.test(current)){
                 return true;
             }
         }
