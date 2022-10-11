@@ -34,12 +34,12 @@ public class Serializable implements Comparable<Serializable>
         return (this.id == other.id);
     }
 
-    public static <T extends Serializable> int getClosingId(Class<T> clazz){
-        return mapCounter.get(clazz);
+    public static <T extends Serializable> int getClosingId(Class<T> cls){
+        return mapCounter.get(cls);
     }
 
-    public static <T extends Serializable> int setClosingId(Class<T> clazz, int id){
-        mapCounter.replace(clazz,id);
-        return mapCounter.get(clazz);
+    public static <T extends Serializable> int setClosingId(Class<T> cls, int id){
+        mapCounter.replace(cls,id);
+        return mapCounter.get(cls);
     }
 }
