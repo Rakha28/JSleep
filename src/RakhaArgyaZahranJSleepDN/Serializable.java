@@ -5,7 +5,7 @@ import java.util.Map;
 public class Serializable implements Comparable<Serializable>
 {
     public final int id;
-    private static Map<Class<?>,Integer> mapCounter = new HashMap();
+    private static final Map<Class<?>,Integer> mapCounter = new HashMap<>();
     protected Serializable(){
         if (mapCounter.get(this.getClass()) == null){
             mapCounter.put(this.getClass(), 0);
