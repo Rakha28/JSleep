@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class Algorithm {
     private Algorithm() {
     }
-
     public static <T> List<T> collect(T[] array, T value) {
         final Iterator<T> it = Arrays.stream(array).iterator();
         return collect(it, value);
@@ -177,19 +176,26 @@ public class Algorithm {
     }
 
     public static <T> List<T> paginate(Iterator<T> iterator, int page, int pageSize, Predicate<T> pred){
+        
         List<T> list = new ArrayList<T>();
 
         int count = 0;
+
+
         int index = 0;
 
         while (iterator.hasNext()) {
+
             T current = iterator.next();
 
             if (pred.test(current)) {
+
                 count++;
 
                 if (count > (page - 1) * pageSize && index < pageSize) {
+
                     list.add(current);
+
                     index++;
 
                 }
