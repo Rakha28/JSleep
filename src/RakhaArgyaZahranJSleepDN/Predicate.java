@@ -1,6 +1,6 @@
 package RakhaArgyaZahranJSleepDN;
 
-public interface Predicate <T>{
-    boolean test(T t);
+public interface Predicate<T> {
+    boolean predicate (T temp);
     
 }

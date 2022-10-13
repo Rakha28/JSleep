@@ -1,6 +1,5 @@
 package RakhaArgyaZahranJSleepDN;
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class Algorithm {
         while (iterator.hasNext()) {
             T current = iterator.next();
 
-            if (pred.test(current)) {
+            if (pred.predicate(current)) {
                 list.add(current);
             }
         }
@@ -80,7 +79,7 @@ public class Algorithm {
         int count = 0;
         while (iterator.hasNext()) {
             T current = iterator.next();
-            if (pred.test(current)) {
+            if (pred.predicate(current)) {
                 count++;
             }
         }
@@ -122,7 +121,7 @@ public class Algorithm {
         while (iterator.hasNext()) {
             T current = iterator.next();
 
-            if (pred.test(current)) {
+            if (pred.predicate(current)) {
                 return true;
             }
         }
@@ -158,7 +157,7 @@ public class Algorithm {
         while (iterator.hasNext()) {
             T t = iterator.next();
 
-            if (pred.test(t)) {
+            if (pred.predicate(t)) {
                 return t;
             }
         }
@@ -176,7 +175,7 @@ public class Algorithm {
     }
 
     public static <T> List<T> paginate(Iterator<T> iterator, int page, int pageSize, Predicate<T> pred){
-        
+
         List<T> list = new ArrayList<T>();
 
         int count = 0;
@@ -188,7 +187,7 @@ public class Algorithm {
 
             T current = iterator.next();
 
-            if (pred.test(current)) {
+            if (pred.predicate(current)) {
 
                 count++;
 
