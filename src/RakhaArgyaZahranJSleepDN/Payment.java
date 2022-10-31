@@ -1,80 +1,79 @@
 package RakhaArgyaZahranJSleepDN;
-
-import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.util.Calendar; 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
-public class Payment extends Invoice
-{
-    public Date to;
-    public Date from;
+public class Payment extends Invoice {
+
     private int roomId;
-    
-    public Payment(Account buyer, Renter renter, int roomId, Date from, Date to)
-    {
-        super(buyer, renter);
+    public Date from;
+    public Date to;
+
+
+
+    public Payment(int buyerId, int renterId, int roomId, Date from, Date to) {
+        super(buyerId, renterId);
+        this.roomId = roomId;
         this.from = from;
         this.to = to;
-        this.roomId = roomId;
     }
 
-    public Payment(int buyerId, int renterId, int roomId, Date from, Date to)
-    {
-        super(buyerId, renterId);
+    public Payment(Account buyer, Renter renter, int roomId, Date from, Date to) {
+        super(buyer, renter);
+        this.roomId = roomId;
         this.from = from;
         this.to = to;
-        this.roomId = roomId;
     }
-    
-    public String getTime()
-    {
-        SimpleDateFormat SDFormat = new SimpleDateFormat("'Formatted Date = 'dd MMMM yyyy");
-        return SDFormat.format(from.getTime());
-    }
-    
-    public String print()
-    {
-        return ("Room ID: " + this.roomId + "\n"+ "Payment from: " + this.from + "\n" + "Payment to: " + this.to + "\n");
-    }
-    
-    public int getRoomId()
-    {
+
+    public int getRoomId() {
         return roomId;
     }
-    
-    public static boolean availability(Date from, Date to, Room room)
-    {
-        if(room.booked.isEmpty()){
+
+    public static boolean makeBooking(Date from,Date to,Room room){
+        if(availability(from, to, room)){
+            Calendar start = Calendar.getInstance();
+            start.setTime(from);
+            Calendar end = Calendar.getInstance();
+            end.setTime(to);
+            for (Date date = start.getTime(); start.before(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
+                room.booked.add(date);
+            }
             return true;
         }
-        if(to.before(from))
+        return false;
+    }
+
+    public static boolean availability(Date from,Date to,Room room){
+        Calendar start = Calendar.getInstance();
+        start.setTime(from);
+        Calendar end = Calendar.getInstance();
+        end.setTime(to);
+        if(start.after(end) || start.equals(end)){
             return false;
-        for(Date i : room.booked){
-            if(i.after(from) && i.before(to) || i.equals(from)){
+        }
+        for (Date date = start.getTime(); start.before(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
+            if(room.booked.contains(date)){
                 return false;
             }
         }
         return true;
     }
-    
-    public static boolean makeBooking(Date from, Date to, Room room)
-    {
-        SimpleDateFormat SDFormat = new SimpleDateFormat("dd MMMM yyyy");
-        String formattedFrom = SDFormat.format(from.getTime());
-        String formattedTo = SDFormat.format(to.getTime());
-        Calendar c = Calendar.getInstance();
-        
-        if(availability(from, to, room)){
-            while(from.before(to)){
-                room.booked.add(from);
-                c.setTime(from);
-                c.add(Calendar.DATE, 1);
-                from = c.getTime();
-            }
-            return true;
-        }else{
-            return false;
-        }
+
+    public String getTime(){
+        SimpleDateFormat SDFormat = new SimpleDateFormat("'Formatted Date' = dd MMMM yyyy");
+        String currTime = SDFormat.format(time.getTime());
+        return currTime;
+    }
+
+    @Override
+    public String print(){
+        return "Payment{" +
+                "roomId=" + roomId +
+                ", from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                '}';
     }
 
 }

@@ -1,46 +1,39 @@
 package RakhaArgyaZahranJSleepDN;
-import java.util.HashMap;
-import java.util.Map;
 
-public class Serializable implements Comparable<Serializable>
-{
+import java.util.HashMap;
+
+public class Serializable {
     public final int id;
-    private static final Map<Class<?>,Integer> mapCounter = new HashMap<>();
-    protected Serializable(){
-        if (mapCounter.get(this.getClass()) == null){
-            mapCounter.put(this.getClass(), 0);
-            this.id = 0;
-        }else{
-            Integer counter = mapCounter.get(this.getClass());
-            mapCounter.put(this.getClass(), ++counter);
-            this.id = counter;
+    private static HashMap<Class<?>, Integer> mapCounter = new HashMap<Class<?>, Integer>();
+
+    protected Serializable() {
+        Integer counter = mapCounter.get(getClass());
+        if (counter == null){
+            counter =  0;
         }
+        else{
+            counter +=1;
+        }
+        mapCounter.put(getClass(), counter);
+        this.id = counter;
     }
 
-    public int compareTo(Serializable other){
+    public static <T extends Serializable> Integer setClosingId(Class<T> clazz, int id) { return mapCounter.put(clazz, id); }
+
+    public static <T extends Serializable> Integer getClosingId(Class<T> clazz) { return mapCounter.get(clazz); }
+
+    public boolean equals(Object other)
+    {
+        return other instanceof Serializable && ((Serializable) other).id == id;
+    }
+
+    public boolean equals(Serializable other)
+    {
+        return other.id == id;
+    }
+
+    public int compareTo(Serializable other)
+    {
         return Integer.compare(this.id, other.id);
     }
-
-    public boolean equals(Object other) {
-        if (other instanceof Serializable) {
-            Serializable serializable = (Serializable) other;
-            return (serializable.id == this.id);
-        } else {
-            return false;
-        }
-    }
-
-    public boolean equals (Serializable other){
-        return (this.id == other.id);
-    }
-
-    public static <T> int getClosingId(Class<T> cls){
-        return mapCounter.get(cls);
-    }
-
-    public static <T> int setClosingId(Class<T> cls, int id){
-        mapCounter.replace(cls,id);
-        return mapCounter.get(cls);
-    }
 }
-

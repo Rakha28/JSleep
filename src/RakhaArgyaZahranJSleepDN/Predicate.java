@@ -1,6 +1,5 @@
 package RakhaArgyaZahranJSleepDN;
 
 public interface Predicate<T> {
-    boolean predicate (T temp);
-    
+    public abstract boolean predicate(T arg);
 }
