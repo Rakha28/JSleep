@@ -15,7 +15,7 @@ public class JSleep {
             String filepath = "src\\json\\randomRoomList.json";
 
             JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
-            List<Room> filterTableRoom = filterByAccountId(tableRoom, 11, 0, 5);
+            List<Room> filterTableRoom = filterByCity(tableRoom, "medan", 0, 5);
             filterTableRoom.forEach(room -> System.out.println(room.toString()));
         }
 
@@ -34,7 +34,7 @@ public class JSleep {
     }
 
     public static List<Room> filterByCity(List<Room> list, String search, int page, int pageSize){
-        return Algorithm.<Room>paginate(list,page,pageSize,room -> room.name.toLowerCase().contains(search.toLowerCase()));
+        return Algorithm.paginate(list, page, pageSize, room -> room.city.toString().toLowerCase().contains(search.toLowerCase()));
     }
 
 
