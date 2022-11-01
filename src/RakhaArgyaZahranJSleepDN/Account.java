@@ -1,6 +1,6 @@
 package RakhaArgyaZahranJSleepDN;
 
-public class Account extends Serializable implements FileParser
+public class Account extends Serializable
 {
     
     public String name;
@@ -18,12 +18,5 @@ public class Account extends Serializable implements FileParser
         return "Name: " + name +
                    "\nEmail: " + email +
                    "\nPassword: " + password;
-    }
-    
-    public Object write(){
-        return null;
-    }
-    public boolean read(String content){
-        return false;
     }
 }

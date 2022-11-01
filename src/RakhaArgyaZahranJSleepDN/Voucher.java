@@ -1,7 +1,7 @@
 package RakhaArgyaZahranJSleepDN;
 
 
-public class Voucher extends Serializable implements FileParser
+public class Voucher extends Serializable
 {
     public Type type;
     public double cut;
@@ -45,11 +45,4 @@ public class Voucher extends Serializable implements FileParser
             return price.price - cut;
         }
     }
-    public Object write(){
-        return null;
-    }
-    public boolean read(String content){
-        return false;
-    }
-    
 }
