@@ -11,17 +11,39 @@ import com.google.gson.stream.JsonReader;
 
 public class JSleep {
     public static void main(String[] args) {
-        try{
-            String filepath = "src\\json\\randomRoomList.json";
 
-            JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
-            List<Room> filterTableRoom = filterByCity(tableRoom, "medan", 0, 5);
-            filterTableRoom.forEach(room -> System.out.println(room.toString()));
+        for(int i = 0; i < 10; i++){
+
+
+            ThreadingObject thread = new ThreadingObject("Thread " + i);
+
+            thread.start();
+
+
         }
 
-        catch(IOException t) {
+        try {
+            String filepath = "src//json//account.json";
+
+
+            JsonTable<Account> tableAccount = new JsonTable<>(Account.class,filepath);
+
+
+            tableAccount.add(new Account("name","email","password"));
+
+
+            tableAccount.writeJson();
+
+            tableAccount = new JsonTable<>(Account.class, filepath);
+
+            tableAccount.forEach(account -> System.out.println(account.toString()));
+
+        }catch (Throwable t){
             t.printStackTrace();
+
+
         }
+
     }
 
     public static List<Room> filterByAccountId(List<Room> list, int accountId, int page, int pageSize){
