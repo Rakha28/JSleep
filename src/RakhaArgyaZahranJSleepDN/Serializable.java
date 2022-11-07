@@ -18,7 +18,7 @@ public class Serializable {
         this.id = counter;
     }
 
-    public static <T extends Serializable> Integer setClosingId(Class<T> clazz, int id) { return mapCounter.put(clazz, id); }
+    public static <T extends Serializable> Integer setClosingId(Class<T> clazz, int id) { return mapCounter.replace(clazz, id); }
 
     public static <T extends Serializable> Integer getClosingId(Class<T> clazz) { return mapCounter.get(clazz); }
 
