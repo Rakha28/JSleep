@@ -1,4 +1,6 @@
 package com.RakhaArgyaZahranJSleepDN;
+import com.RakhaArgyaZahranJSleepDN.dbjson.Serializable;
+
 import java.util.Date;
 import java.util.ArrayList;
 

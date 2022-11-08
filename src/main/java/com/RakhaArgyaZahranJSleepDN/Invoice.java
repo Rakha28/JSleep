@@ -1,4 +1,6 @@
 package com.RakhaArgyaZahranJSleepDN;
+import com.RakhaArgyaZahranJSleepDN.dbjson.Serializable;
+
 import java.util.Date;
 
 public class Invoice extends Serializable
@@ -9,7 +11,7 @@ public class Invoice extends Serializable
     public int renterId;
     public PaymentStatus status;
     public RoomRating rating;
-    Date time;
+    public Date time;
     
     protected Invoice(int buyerId, int renterId)
     {

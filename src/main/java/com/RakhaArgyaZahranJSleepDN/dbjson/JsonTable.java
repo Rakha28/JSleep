@@ -1,4 +1,4 @@
-package com.RakhaArgyaZahranJSleepDN;
+package com.RakhaArgyaZahranJSleepDN.dbjson;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;

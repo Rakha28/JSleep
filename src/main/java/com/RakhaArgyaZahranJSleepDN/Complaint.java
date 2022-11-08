@@ -1,6 +1,8 @@
 package com.RakhaArgyaZahranJSleepDN;
 
 
+import com.RakhaArgyaZahranJSleepDN.dbjson.Serializable;
+
 /**
  * Write a description of class Complaint here.
  *
