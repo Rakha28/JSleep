@@ -10,14 +10,14 @@ public class Room extends Serializable
     public int size;
     public String name, address;
     public Facility facility;
-    public Price price;
+    public double price;
     public BedType bedType;
     public City city;
     public ArrayList<Date> booked;
 
-    public int accountId;
+    public static int accountId;
     
-   public Room(int accountId, String name, int size, Price price, Facility facility, City city, String address){
+   public Room(int accountId, String name, int size, int price, Facility facility, City city, String address){
        super();
        this.name = name;
        this.size = size;

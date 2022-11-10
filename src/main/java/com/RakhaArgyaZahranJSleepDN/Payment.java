@@ -1,7 +1,4 @@
 package com.RakhaArgyaZahranJSleepDN;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -59,12 +56,6 @@ public class Payment extends Invoice {
             }
         }
         return true;
-    }
-
-    public String getTime(){
-        SimpleDateFormat SDFormat = new SimpleDateFormat("'Formatted Date' = dd MMMM yyyy");
-        String currTime = SDFormat.format(time.getTime());
-        return currTime;
     }
 
     @Override
