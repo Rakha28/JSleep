@@ -1,4 +1,4 @@
-package com.RakhaArgyaZahranJSleepDN.Controller;
+package com.RakhaArgyaZahranJSleepDN.controller;
 
 import com.RakhaArgyaZahranJSleepDN.Algorithm;
 import com.RakhaArgyaZahranJSleepDN.Voucher;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/voucher")
 public class VoucherController implements BasicGetController<Voucher> {
 
-    @JsonAutowired(value = Voucher.class, filepath = "C:/Users/RakhaArgya/OneDrive/Dokumen/Argy/PRAKTIKUM OOP/JSleep/lib/voucher.json")
+    @JsonAutowired(value = Voucher.class, filepath = "C:\\Users\\RakhaArgya\\OneDrive\\Dokumen\\Argy\\PRAKTIKUM OOP\\JSleep\\lib\\voucher.json")
     public static JsonTable<Voucher> voucherTable;
 
     @Override

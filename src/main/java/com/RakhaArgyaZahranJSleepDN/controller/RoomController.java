@@ -1,4 +1,4 @@
-package com.RakhaArgyaZahranJSleepDN.Controller;
+package com.RakhaArgyaZahranJSleepDN.controller;
 
 import com.RakhaArgyaZahranJSleepDN.Algorithm;
 import com.RakhaArgyaZahranJSleepDN.City;
@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/room")
 public class RoomController implements BasicGetController{
-    @JsonAutowired(value = Room.class, filepath = "C:/Users/RakhaArgya/OneDrive/Dokumen/Argy/PRAKTIKUM OOP/JSleep/lib/room.json")
+    @JsonAutowired(value = Room.class, filepath = "C:\\Users\\RakhaArgya\\OneDrive\\Dokumen\\Argy\\PRAKTIKUM OOP\\JSleep\\lib\\Room.json")
     public static JsonTable<Room> roomTable;
 
     @Override

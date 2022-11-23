@@ -1,25 +1,33 @@
-package com.RakhaArgyaZahranJSleepDN.Controller;
+package com.RakhaArgyaZahranJSleepDN.controller;
 
-import com.RakhaArgyaZahranJSleepDN.Account;
+
 import com.RakhaArgyaZahranJSleepDN.Algorithm;
-import com.RakhaArgyaZahranJSleepDN.Renter;
+import com.RakhaArgyaZahranJSleepDN.Account;
 import com.RakhaArgyaZahranJSleepDN.dbjson.JsonAutowired;
 import com.RakhaArgyaZahranJSleepDN.dbjson.JsonTable;
+import com.RakhaArgyaZahranJSleepDN.Renter;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 @RestController
 @RequestMapping("/account")
 public class AccountController implements BasicGetController<Account>
 {
-    @JsonAutowired(value=Account.class,filepath="\"C:\\Users\\RakhaArgya\\OneDrive\\Dokumen\\Argy\\PRAKTIKUM OOP\\JSleep\\lib\\account.json\"")
-    public static JsonTable<Account> accountTable;
+    @JsonAutowired(value=Account.class,filepath="C:\\Users\\RakhaArgya\\OneDrive\\Dokumen\\Argy\\PRAKTIKUM OOP\\JSleep\\lib\\account.json")
+    public static JsonTable<Account>  accountTable;
+    static {
+        try {
+            accountTable = new JsonTable<>(Account.class, "C:\\Users\\RakhaArgya\\OneDrive\\Dokumen\\Argy\\PRAKTIKUM OOP\\JSleep\\lib\\account.json");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static final String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
     public static final Pattern REGEX_PATTERN_PASSWORD = Pattern.compile(REGEX_PASSWORD);
     public static final String REGEX_EMAIL = "^[a-zA-Z0-9 ][a-zA-Z0-9]+@[a-zA-Z.]+?\\.[a-zA-Z]+?$";
@@ -39,7 +47,7 @@ public class AccountController implements BasicGetController<Account>
         final String generatedPass;
         Matcher matcher_email = REGEX_PATTERN_EMAIL.matcher(email);
         Matcher matcher_password = REGEX_PATTERN_PASSWORD.matcher(password);
-        Account findEmail = Algorithm.<Account> find(getJsonTable(), pred -> Objects.equals(pred.email, email));
+        Account findEmail = Algorithm.<Account> find(accountTable, pred -> Objects.equals(pred.email, email));
 
         if(matcher_email.find() && matcher_password.find() && !name.isBlank() && findEmail == null){
             generatedPass = hashPassword(password);

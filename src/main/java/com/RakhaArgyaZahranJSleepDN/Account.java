@@ -2,57 +2,41 @@ package com.RakhaArgyaZahranJSleepDN;
 
 import com.RakhaArgyaZahranJSleepDN.dbjson.Serializable;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.*;
+
 public class Account extends Serializable
 {
-    
     public String name;
-    public String email;
-    public String password;
-
-    public static final String REGEX_EMAIL = "^[A-Z0-9._%+-]@[A-Za-z.-]\\.[a-z]$";
-
-
-    public static final String REGEX_PASSWORD = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])*[a-zA-Z\\d]{8,}$";
     public double balance;
     public Renter renter;
-
-
-    public Account (String name, String email, String password){
+    public String password;
+    public String email;
+    final public static String REGEX_EMAIL = "^[A-Za-z0-9.%+-]@[A-Za-z.-]\\.[A-Za-z]$";
+    final public static String REGEX_PASSWORD = "^[A-Z][A-Za-z0-9_-]{8,}$";
+    public Account(String name, String email, String password){
+        super();
+        this.balance = 0;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.renter = null;
     }
-    public boolean validate(){
-        Pattern patternEmail = Pattern.compile(this.REGEX_EMAIL);
 
-        Matcher matcherEmail = patternEmail.matcher(this.email);
-
-
-        boolean matchFoundEmail = matcherEmail.find();
-
-        Pattern patternPassword = Pattern.compile(this.REGEX_PASSWORD);
-
-        Matcher matcherPassword = patternPassword.matcher(this.name);
-
-
-        boolean matchFoundPassword = matcherPassword.find();
-
-        return matchFoundEmail && matchFoundPassword;
-
-
-
-
-
-
-    }
     public String toString(){
-        return "Account{name='"+name+"', email='"+email+"', password='"+password+"', id='"+id+"'}";
-
-
-
-
+        return "===ACCOUNT===\n" + "Name\t\t: " + name + "\nE-mail\t\t: " + email +
+                "\nPassword\t: " + password + "\nId\t\t\t: " + id;
     }
+
+    public boolean validate(){
+        Pattern email = Pattern.compile(REGEX_EMAIL);
+        Pattern password = Pattern.compile(REGEX_PASSWORD);
+
+        Matcher matchEmail = email.matcher(this.email);
+        Matcher matchPassword = password.matcher(this.password);
+
+        if (this.email == null || this.password == null){
+            return false;
+        }
+        return matchEmail.find() && matchPassword.find();
+    }
+
 }

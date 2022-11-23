@@ -1,4 +1,4 @@
-package com.RakhaArgyaZahranJSleepDN.Controller;
+package com.RakhaArgyaZahranJSleepDN.controller;
 
 import com.RakhaArgyaZahranJSleepDN.*;
 import com.RakhaArgyaZahranJSleepDN.dbjson.JsonAutowired;
@@ -13,7 +13,7 @@ import java.util.Date;
 @RequestMapping("/payment")
 public class PaymentController implements BasicGetController<Payment> {
 
-    @JsonAutowired(value = Account.class,filepath ="\"C:\\Users\\RakhaArgya\\OneDrive\\Dokumen\\Argy\\PRAKTIKUM OOP\\JSleep\\lib\\payment.json\"" )
+    @JsonAutowired(value = Account.class,filepath ="C:\\Users\\RakhaArgya\\OneDrive\\Dokumen\\Argy\\PRAKTIKUM OOP\\JSleep\\lib\\payments.json" )
     public static JsonTable<Payment> paymentTable;
 
     @GetMapping
