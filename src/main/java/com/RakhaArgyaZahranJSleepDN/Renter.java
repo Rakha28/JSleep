@@ -6,10 +6,9 @@ import java.util.regex.Pattern;
 
 
 /**
- * Write a description of class Renter here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Renter class for the database.
+ * @author Rakha Argya Zahran
+ * @version 0.1
  */
 public class Renter extends Serializable
 {
@@ -22,7 +21,7 @@ public class Renter extends Serializable
     public static final String REGEX_PHONE = "[0-9]{9,12}";
     public static final String REGEX_NAME = "^[A-Z][a-z0-9_][^/s]{4,20}$";
 
-    public Renter(String username, String phoneNumber, String address){
+    public Renter(String username, String address, String phoneNumber){
         this.username = username;
         this.address = address;
         this.phoneNumber = phoneNumber;

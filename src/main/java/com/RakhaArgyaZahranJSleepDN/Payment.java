@@ -2,34 +2,87 @@ package com.RakhaArgyaZahranJSleepDN;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Payment extends Invoice {
-
-    private int roomId;
-    public Date from;
+/**
+ * Payment class for the database.
+ * @author Rakha Argya Zahran
+ * @version 0.1
+ */
+public class Payment extends Invoice
+{
     public Date to;
+    public Date from;
+    private int roomId;
 
-
-
-    public Payment(int buyerId, int renterId, int roomId, Date from, Date to) {
+    /**
+     * constructor for the class
+     * @param from the date of the check in
+     * @param to the date of the check out
+     * @param roomId the id of the room
+     */
+    public Payment(int buyerId, int renterId, int roomId, Date from, Date to)
+    {
         super(buyerId, renterId);
-        this.roomId = roomId;
-        this.from = from;
         this.to = to;
+        this.from = from;
+        this.roomId = roomId;
     }
 
-    public Payment(Account buyer, Renter renter, int roomId, Date from, Date to) {
+    /**
+     * constructor for the class
+     * @param buyer the buyer
+     * @param renter the renter
+     * @param roomId the id of the room
+     * @param from the date of the check in
+     * @param to the date of the check out
+     */
+    public Payment(Account buyer, Renter renter, int roomId, Date from, Date to)
+    {
         super(buyer, renter);
-        this.roomId = roomId;
-        this.from = from;
         this.to = to;
+        this.from = from;
+        this.roomId = roomId;
     }
 
-    public int getRoomId() {
-        return roomId;
+
+    /**
+     * check availability
+     * @param from the date of the check in
+     * @param to the date of the check out
+     * @param room the room
+     * @return true if available
+     */
+    public static boolean availability(Date from, Date to, Room room){
+        if(room.booked.isEmpty()){
+            return true;
+        }
+        if(to.before(from))
+            return false;
+        for(Date i : room.booked){
+            if(i.after(from) && i.before(to) || i.equals(from)){
+                return false;
+            }
+        }
+        return true;
     }
 
+    /**
+     * get room
+     * @return the room
+     */
+    public int getRoomId(){
+        return this.roomId;
+    }
+
+
+    /**
+     * make booking
+     * @param from the date of the check in
+     * @param to the date of the check out
+     * @param room the room
+     * @return true if success
+     */
     public static boolean makeBooking(Date from,Date to,Room room){
-        if(availability(from, to, room)){
+        if (availability(from, to, room)){
             Calendar start = Calendar.getInstance();
             start.setTime(from);
             Calendar end = Calendar.getInstance();
@@ -42,29 +95,26 @@ public class Payment extends Invoice {
         return false;
     }
 
-    public static boolean availability(Date from,Date to,Room room){
-        Calendar start = Calendar.getInstance();
-        start.setTime(from);
-        Calendar end = Calendar.getInstance();
-        end.setTime(to);
-        if(start.after(end) || start.equals(end)){
-            return false;
-        }
-        for (Date date = start.getTime(); start.before(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
-            if(room.booked.contains(date)){
-                return false;
+    public static boolean removeBooking(Date from,Date to,Room room){
+        if (availability(from, to, room)){
+            Calendar start = Calendar.getInstance();
+            start.setTime(from);
+            Calendar end = Calendar.getInstance();
+            end.setTime(to);
+            for (Date date = start.getTime(); start.before(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
+                room.booked.remove(date);
             }
+            return true;
         }
-        return true;
+        return false;
     }
 
-    @Override
-    public String print(){
-        return "Payment{" +
-                "roomId=" + roomId +
-                ", from='" + from + '\'' +
-                ", to='" + to + '\'' +
-                '}';
-    }
 
+    /**
+     * change to string
+     * @return the string
+     */
+    public String toString(){
+        return "Room ID: " + this.roomId + "\n"+ "Payment from: " + this.from + "\n" + "Payment to: " + this.to + "\n";
+    }
 }

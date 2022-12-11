@@ -1,6 +1,11 @@
 package com.RakhaArgyaZahranJSleepDN;
 import com.RakhaArgyaZahranJSleepDN.dbjson.Serializable;
 
+/**
+ * Invoice class for the database.
+ * @author Rakha Argya Zahran
+ * @version 0.1
+ */
 public class Invoice extends Serializable
 {
     public enum RoomRating { NONE, BAD, NEUTRAL, GOOD};
@@ -10,6 +15,11 @@ public class Invoice extends Serializable
     public PaymentStatus status;
     public RoomRating rating;
 
+    /**
+     * constructor for the class
+     * @param buyerId the id of the buyer
+     * @param renterId the id of the renter
+     */
     protected Invoice(int buyerId, int renterId)
     {
         super();
@@ -20,6 +30,11 @@ public class Invoice extends Serializable
         
     }
 
+    /**
+     * Contructor for the class
+     * @param buyer the buyer
+     * @param renter the renter
+     */
     public Invoice(Account buyer, Renter renter){
         super();
         this.buyerId = buyer.id;
@@ -27,7 +42,11 @@ public class Invoice extends Serializable
         this.rating = RoomRating.NONE;
         this.status = PaymentStatus.WAITING;
     }
-    
+
+    /**
+     * change to string
+     * @return the string
+     */
     public String print(){
         return "Id : " + super.id +
                        "\nBuyer Id : " + buyerId +

@@ -1,447 +1,382 @@
 package com.RakhaArgyaZahranJSleepDN;
 import java.util.*;
 
+/**
+ * A class for the algorithm
+ * @author Rakha Argya Zahran
+ * @version 0.1
+ */
 public class Algorithm {
-    private Algorithm(){
-
+    /**
+     * Main method
+     */
+    private Algorithm() {
     }
 
-    public static <T> List<T> collect (T[] array, T value){
-        List<T> list = new ArrayList<T>();
-        for (T i : array){
-            if (value.equals(i)){
-                list.add(i);
-            }
-        }
-        return list;
+    /**
+     * Collect the object in the table
+     * @param iterable the iterable object
+     * @param value the value of the object
+     * @return the list of object
+     * @param <T> the type of the object
+     */
+    public static <T> List<T> collect(Iterable<T> iterable, T value) {
+        final Iterator<T> it = iterable.iterator();
+        return collect(it, value);
     }
-    public static <T> List<T> collect (Iterable<T> iterable, T value){
-        List<T> list = new ArrayList<T>();
-        for (T i : iterable) {
-            if (value.equals(i)) {
-                list.add(i);
-            }
-        }
-        return list;
+
+    /**
+     * collect the object in the table
+     * @param iterable the iterable object
+     * @param pred the predicate
+     * @return the list of object
+     * @param <T> the type of the object
+     */
+    public static <T> List<T> collect(Iterable<T> iterable, Predicate<T> pred) {
+        final Iterator<T> it = iterable.iterator();
+        return collect(it, pred);
     }
-    public static <T> List<T> collect (Iterator<T> iterator, T value){
-        List<T> list = new ArrayList<T>();
-        T obj = null;
+
+    /**
+     * Collect the object in the table
+     * @param array the array of the object
+     * @param value the value of the object
+     * @return the list of object
+     * @param <T> the type of the object
+     */
+    public static <T> List<T> collect(T[] array, T value) {
+        final Iterator<T> it = Arrays.stream(array).iterator();
+        return collect(it, value);
+    }
+
+    /**
+     * Collect the object in the table
+     * @param iterator the iterator of the object
+     * @param value the value of the object
+     * @return the list of object
+     * @param <T> the type of the object
+     */
+    public static <T> List<T> collect(Iterator<T> iterator, T value) {
+        final Predicate<T> pred = value::equals;
+        return collect(iterator, pred);
+    }
+
+
+    /**
+     * Collect the object in the table
+     * @param array the array of the object
+     * @param pred the predicate
+     * @return the list of object
+     * @param <T> the type of the object
+     */
+    public static <T> List<T> collect(T[] array, Predicate<T> pred) {
+        final Iterator<T> it = Arrays.stream(array).iterator();
+        return collect(it, pred);
+    }
+
+    /**
+     * Collect the object in the table
+     * @param iterator  the iterator of the object
+     * @param pred the predicate
+     * @return the list of object
+     * @param <T> the type of the object
+     */
+    public static <T> List<T> collect(Iterator<T> iterator, Predicate<T> pred) {
+        List<T> list = new ArrayList<>();
         while (iterator.hasNext()) {
-            obj = iterator.next();
-            if (value.equals(obj)) {
-                list.add(obj);
-            }
-        }
-        return list;
-    }
-    public static <T> List<T> collect (T[] array, Predicate<T> pred){
-        List<T> list = new ArrayList<T>();
-        for (T i: array){
-            if (pred.predicate(i)){
-                list.add(i);
-            }
-        }
-        return list;
-    }
-    public static <T> List<T> collect (Iterable<T> iterable, Predicate<T> pred){
-        List<T> list = new ArrayList<T>();
-        for (T i: iterable){
-            if (pred.predicate(i)){
-                list.add(i);
-            }
-        }
-        return list;
-    }
-    public static <T> List<T> collect (Iterator<T> iterator, Predicate<T> pred){
-        List<T> list = new ArrayList<T>();
-        T obj;
-        while (iterator.hasNext()) {
-            obj = iterator.next();
-            if (pred.predicate(obj)) {
-                list.add(obj);
-            }
+            T current = iterator.next();
+            if (pred.predicate(current))
+                list.add(current);
         }
         return list;
     }
 
-    public static <T> int count(T[] array, T value){
-        int counter = 0;
-        for (T i:array){
-            if (i == value){
-                counter++;
-            }
-        }
-        return counter;
+    /**
+     * count the object in the table
+     * @param array the array of the object
+     * @param value the value of the object
+     * @return the number of object
+     * @param <T> the type of the object
+     */
+    public static <T> int count(T[] array, T value) {
+        final Iterator<T> it = Arrays.stream(array).iterator();
+        return count(it, value);
     }
-    public static <T> int count(Iterable<T> iterable, T value){
-        int counter = 0;
-        for (T i:iterable){
-            if (i == value){
-                counter++;
-            }
-        }
-        return counter;
+
+    /**
+     * count the object in the table
+     * @param iterable the iterable object
+     * @param value the value of the object
+     * @return the number of object
+     * @param <T> the type of the object
+     */
+    public static <T> int count(Iterable<T> iterable, T value) {
+        final Iterator<T> it = iterable.iterator();
+        return count(it, value);
     }
-    public static <T> int count(Iterator<T> iterator, T value){
-        int counter = 0;
-        T obj = null;
-        while(iterator.hasNext()){
-            obj = iterator.next();
-            if (obj == value){
-                counter++;
-            }
-        }
-        return counter;
+
+    /**
+     * count the object in the table
+     * @param iterator the iterator of the object
+     * @param value the value of the object
+     * @return  the number of object
+     * @param <T> the type of the object
+     */
+    public static <T> int count(Iterator<T> iterator, T value) {
+        final Predicate<T> pred = value::equals;
+        return count(iterator, pred);
     }
-    public static <T> int count(T[] array, Predicate<T> pred){
-        int counter = 0;
-        for (T i:array){
-            if (pred.predicate(i)) {
-                counter++;
-            }
-        }
-        return counter;
+
+    /**
+     * Count the object in the table
+     * @param array the array of the object
+     * @param pred the predicate
+     * @return the number of object
+     * @param <T> the type of the object
+     */
+    public static <T> int count(T[] array, Predicate<T> pred) {
+        final Iterator<T> it = Arrays.stream(array).iterator();
+        return count(it, pred);
     }
-    public static <T> int count(Iterable<T> iterable, Predicate<T> pred){
-        int counter = 0;
-        for (T i:iterable){
-            if (pred.predicate(i)){
-                counter++;
-            }
-        }
-        return counter;
+
+    /**
+     * Count the object in the table
+     * @param iterable the iterable object
+     * @param pred the predicate
+     * @return the number of object
+     * @param <T> the type of the object
+     */
+    public static <T> int count(Iterable<T> iterable, Predicate<T> pred) {
+        final Iterator<T> it = iterable.iterator();
+        return count(it, pred);
     }
-    public static <T> int count(Iterator<T> iterator, Predicate<T> pred){
-        int counter = 0;
-        while(iterator.hasNext()){
-            if (pred.predicate(iterator.next())) {
-                counter++;
-            }
+
+    /**
+     * Count the object in the table
+     * @param iterator the iterator of the object
+     * @param pred the predicate
+     * @return the number of object
+     * @param <T> the type of the object
+     */
+    public static <T> int count(Iterator<T> iterator, Predicate<T> pred) {
+        int count = 0;
+        while (iterator.hasNext()) {
+            T current = iterator.next();
+            if (pred.predicate(current)) count += 1;
         }
-        return counter;
+        return count;
     }
-    public static <T> boolean exists(T[] array, T value){
-        for (T i: array){
-            if (i == value){
+
+    /**
+     * exist the object in the table
+     * @param array the array of the object
+     * @param value the value of the object
+     * @return true if the object exist
+     * @param <T> the type of the object
+     */
+    public static <T> boolean exists(T[] array, T value) {
+        final Iterator<T> it = Arrays.stream(array).iterator();
+        return exists(it, value);
+    }
+
+    /**
+     * exist the object in the table
+     * @param iterable the iterable object
+     * @param value the value of the object
+     * @return true if the object exist
+     * @param <T> the type of the object
+     */
+    public static <T> boolean exists(Iterable<T> iterable, T value) {
+        final Iterator<T> it = iterable.iterator();
+        return exists(it, value);
+    }
+
+    /**
+     * exist the object in the table
+     * @param iterator the iterator of the object
+     * @param value the value of the object
+     * @return true if the object exist
+     * @param <T> the type of the object
+     */
+
+    public static <T> boolean exists(Iterator<T> iterator, T value) {
+        final Predicate<T> pred = value::equals;
+        return exists(iterator, pred);
+    }
+
+    /**
+     * exist the object in the table
+     * @param array the array of the object
+     * @param pred the predicate
+     * @return true if the object exist
+     * @param <T> the type of the object
+     */
+    public static <T> boolean exists(T[] array, Predicate<T> pred) {
+        final Iterator<T> it = Arrays.stream(array).iterator();
+        return exists(it, pred);
+    }
+
+    /**
+     * check if the object exist in the table
+     * @param iterable the iterable object
+     * @param pred the predicate
+     * @return true if the object exist
+     * @param <T> the type of the object
+     */
+    public static <T> boolean exists(Iterable<T> iterable, Predicate<T> pred) {
+        final Iterator<T> it = iterable.iterator();
+        return exists(it, pred);
+    }
+
+    /**
+     * check if the object exist in the table
+     * @param iterator  the iterator of the object
+     * @param pred the predicate
+     * @return true if the object exist
+     * @param <T> the type of the object
+     */
+    public static <T> boolean exists(Iterator<T> iterator, Predicate<T> pred) {
+        while (iterator.hasNext()) {
+            T current = iterator.next();
+            if (pred.predicate(current))
                 return true;
-            }
         }
         return false;
     }
-    public static <T> boolean exists(Iterable<T> iterable, T value){
-        for (T i: iterable){
-            if (i == value){
-                return true;
-            }
-        }
-        return false;
+
+    /**
+     * find the object in the table
+     * @param iterable the iterable object
+     * @param value the value of the object
+     * @return the object
+     * @param <T> the type of the object
+     */
+    public static <T> T find(Iterable<T> iterable, T value) {
+        final Iterator<T> counter = iterable.iterator();
+        return find(counter, value);
     }
-    public static <T> boolean exists(Iterator<T> iterator, T value){
-        while (iterator.hasNext()){
-            if (value == iterator.next()){
-                return true;
-            }
-        }
-        return false;
+
+    /**
+     * find the object in the table
+     * @param array the array of the object
+     * @param value the value of the object
+     * @return the object
+     * @param <T> the type of the object
+     */
+    public static <T> T find(T[] array, T value) {
+        final Iterator<T> counter = Arrays.stream(array).iterator();
+        return find(counter, value);
     }
-    public static <T> boolean exists(T [] array, Predicate<T> pred){
-        for (T i: array){
-            if (pred.predicate(i)){
-                return true;
-            }
-        }
-        return false;
+
+
+    /**
+     * find the object in the table
+     * @param array the array of the object
+     * @param pred the predicate
+     * @return the object
+     * @param <T> the type of the object
+     */
+    public static <T> T find(T[] array, Predicate<T> pred) {
+        final Iterator<T> counter = Arrays.stream(array).iterator();
+        return find(counter, pred);
     }
-    public static <T> boolean exists(Iterable<T> iterable, Predicate<T> pred){
-        for (T i:iterable){
-            if(pred.predicate(i)){
-                return true;
-            }
-        }
-        return false;
+
+    /**
+     * find the object in the table
+     * @param iterable the iterable object
+     * @param pred the predicate
+     * @return the object
+     * @param <T> the type of the object
+     */
+    public static <T> T find(Iterable<T> iterable, Predicate<T> pred) {
+        final Iterator<T> counter = iterable.iterator();
+        return find(counter, pred);
     }
-    public static <T> boolean exists(Iterator<T> iterator, Predicate<T> pred){
-        while (iterator.hasNext()){
-            if (pred.predicate(iterator.next())){
-                return true;
-            }
-        }
-        return false;
+
+
+    /**
+     * find the object in the table
+     * @param iterator the iterator of the object
+     * @param value the value of the object
+     * @return the object
+     * @param <T> the type of the object
+     */
+    public static <T> T find(Iterator<T> iterator, T value) {
+        final Predicate<T> pred = value::equals;
+        return find(iterator, pred);
     }
-    public static <T> T find (T[] array, T value){
-        for (T i: array){
-            if (i == value){
-                return i;
-            }
+
+    /**
+     * find the object in the table
+     * @param iterator the iterator of the object
+     * @param pred the predicate
+     * @return the object
+     * @param <T> the type of the object
+     */
+    public static <T> T find(Iterator<T> iterator, Predicate<T> pred) {
+        while (iterator.hasNext()) {
+            T current = iterator.next();
+            if (pred.predicate(current))
+                return current;
         }
         return null;
     }
-    public static <T> T find (Iterable<T> iterable, T value){
-        for (T i: iterable){
-            if (i == value){
-                return i;
-            }
-        }
-        return null;
+
+
+    /**
+     * partition the table
+     * @param array the array of the object
+     * @param page the page
+     * @param pageSize the page size
+     * @param pred the predicate
+     * @return the partition
+     * @param <T> the type of the object
+     */
+    public static <T> List<T> paginate(T[] array, int page, int pageSize, Predicate<T> pred) {
+        final Iterator<T> counter = Arrays.stream(array).iterator();
+        return paginate(counter, page, pageSize, pred);
     }
-    public static <T> T find (Iterator<T> iterator, T value){
-        T temp;
-        while (iterator.hasNext()){
-            temp = iterator.next();
-            if (value == temp){
-                return temp ;
-            }
-        }
-        return null;
+
+    /**
+     * partition the table
+     * @param iterable the iterable object
+     * @param page the page
+     * @param pageSize the page size
+     * @param pred the predicate
+     * @return the partition
+     * @param <T> the type of the object
+     */
+    public static <T> List<T> paginate(Iterable<T> iterable, int page, int pageSize, Predicate<T> pred) {
+        final Iterator<T> counter = iterable.iterator();
+        return paginate(counter, page, pageSize, pred);
     }
-    public static <T> T find (T[] array, Predicate<T> pred){
-        for (T i: array){
-            if (pred.predicate(i)){
-                return i;
-            }
-        }
-        return null;
-    }
-    public static <T> T find (Iterable<T> iterable, Predicate<T> pred){
-        if (iterable != null){
-            for (T i: iterable){
-                if (pred.predicate(i)){
-                    return i;
+
+    /**
+     * partition the table
+     * @param iterator the iterator of the object
+     * @param page the page
+     * @param pageSize the page size
+     * @param pred the predicate
+     * @return the partition
+     * @param <T> the type of the object
+     */
+    public static <T> List<T> paginate(Iterator<T> iterator, int page, int pageSize, Predicate<T> pred) {
+        List<T> list = new ArrayList<>();
+        int tally = 0;
+        int size = 0;
+        while (iterator.hasNext()) {
+            T current = iterator.next();
+            if (pred.predicate(current)) {
+                if (size == pageSize)
+                    break;
+                if (tally >= page * pageSize) {
+                    list.add(current);
+                    size++;
                 }
+                tally++;
             }
         }
-        return null;
-    }
-    public static <T> T find (Iterator<T> iterator, Predicate<T> pred){
-        T temp;
-        while (iterator.hasNext()){
-            temp = iterator.next();
-            if (pred.predicate(temp)){
-                return temp ;
-            }
-        }
-        return null;
-    }
-    public static <T extends Number> T max (T first, T second){
-        if (first.doubleValue() > second.doubleValue()){
-            return first;
-        }else{
-            return second;
-        }
-    }
-    public static <T extends Number> T max (T[] array){
-        T terbesar = array[0];
-        for (T i : array){
-            if (i.doubleValue() > terbesar.doubleValue()){
-                terbesar = i;
-            }
-        }
-        return terbesar;
-    }
-    public static <T extends Number> T max (Iterable<T> iterable) {
-        boolean flag = false;
-        T terbesar = null;
-        for (T i : iterable) {
-            if (!flag) {
-                flag = true;
-                terbesar = i;
-            } else if (i.doubleValue() > terbesar.doubleValue()) {
-                terbesar = i;
-            }
-        }
-        return terbesar;
-    }
-    public static <T extends Number> T max (Iterator<T> iterator) {
-
-        T terbesar = null;
-        T temp;
-        for (int counter = 0; iterator.hasNext(); counter++){
-            temp = iterator.next();
-            if (counter == 0){
-                terbesar = temp;
-            }else if(temp.doubleValue() > terbesar.doubleValue()){
-                terbesar = temp;
-            }
-        }
-        return terbesar;
-    }
-    public static <T extends Number> T max (T first, T second, Comparator<?super T> comparator) {
-
-        if (comparator.compare(first,second) > 0){
-            return first;
-        }else{
-            return second;
-        }
-
-    }
-    public static <T extends Number> T max (T[] array, Comparator<?super T> comparator) {
-
-        T terbesar = array[0];
-        for (T i:array){
-            if (comparator.compare(i,terbesar)>0){
-                terbesar = i;
-            }
-        }
-        return terbesar;
-    }
-    public static <T extends Number> T max (Iterable<T> iterable, Comparator<?super T> comparator) {
-        boolean flag = false;
-        T terbesar = null;
-        for (T i : iterable) {
-            if (!flag) {
-                flag = true;
-                terbesar = i;
-            } else if (comparator.compare(i,terbesar) > 0) {
-                terbesar = i;
-            }
-        }
-        return terbesar;
-    }
-    public static <T extends Number> T max (Iterator<T> iterator, Comparator<?super T> comparator) {
-
-        T terbesar = null;
-        T temp;
-        for (int counter = 0; iterator.hasNext(); counter++){
-            temp = iterator.next();
-            if (counter == 0){
-                terbesar = temp;
-            }else if(comparator.compare(temp,terbesar) > 0){
-                terbesar = temp;
-            }
-        }
-        return terbesar;
+        return list;
     }
 
-    public static <T extends Number> T min (T first, T second){
-        if (first.doubleValue() < second.doubleValue()){
-            return first;
-        }else{
-            return second;
-        }
-    }
-
-    public static <T extends Number> T min (T[] array){
-        T terkecil = array[0];
-        for (T i : array){
-            if (i.doubleValue() < terkecil.doubleValue()){
-                terkecil = i;
-            }
-        }
-        return terkecil;
-    }
-    public static <T extends Number> T min (Iterable<T> iterable) {
-        boolean flag = false;
-        T terkecil = null;
-        for (T i : iterable) {
-            if (!flag) {
-                flag = true;
-                terkecil = i;
-            } else if (i.doubleValue() < terkecil.doubleValue()) {
-                terkecil = i;
-            }
-        }
-        return terkecil;
-    }
-    public static <T extends Number> T min (Iterator<T> iterator) {
-
-        T terkecil = null;
-        T temp;
-        for (int counter = 0; iterator.hasNext(); counter++){
-            temp = iterator.next();
-            if (counter == 0){
-                terkecil = temp;
-            }else if(temp.doubleValue() < terkecil.doubleValue()){
-                terkecil = temp;
-            }
-        }
-        return terkecil;
-    }
-    public static <T extends Number> T min (T first, T second, Comparator<?super T> comparator) {
-
-        T terkecil;
-        if (comparator.compare(first,second) < 0){
-            return first;
-        }else{
-            return second;
-        }
-
-    }
-    public static <T extends Number> T min (Iterable<T> iterable, Comparator<?super T> comparator) {
-        boolean flag = false;
-        T terkecil = null;
-        for (T i : iterable) {
-            if (!flag) {
-                flag = true;
-                terkecil = i;
-            } else if (comparator.compare(i,terkecil) < 0) {
-                terkecil = i;
-            }
-        }
-        return terkecil;
-    }
-    public static <T extends Number> T min (Iterator<T> iterator, Comparator<?super T> comparator) {
-
-        T terkecil = null;
-        T temp;
-        for (int counter = 0; iterator.hasNext(); counter++){
-            temp = iterator.next();
-            if (counter == 0){
-                terkecil = temp;
-            }else if(comparator.compare(temp,terkecil) < 0){
-                terkecil = temp;
-            }
-        }
-        return terkecil;
-    }
-    public static <T> List<T> paginate (T[] array, int page, int pageSize, Predicate<T> pred){
-        List<List<T>> newList = new ArrayList<List<T>>();
-        List<T> filteredList = new ArrayList<T>();
-        for (T i: array){
-            if (pred.predicate(i)){
-                filteredList.add(i);
-            }
-        }
-        for (int i = 0; i < filteredList.size(); i += pageSize){
-            newList.add(new ArrayList<T>(filteredList.subList
-                    (i, Math.min(filteredList.size(), i + pageSize))));
-
-        }
-
-        return newList.get(page);
-    }
-    public static <T> List<T> paginate (Iterable<T> iterable, int page, int pageSize, Predicate<T> pred){
-        List<List<T>> newList = new ArrayList<List<T>>();
-        List<T> filteredList = new ArrayList<T>();
-        for (T i: iterable){
-            if (pred.predicate(i)){
-                filteredList.add(i);
-            }
-        }
-        for (int i = 0; i < filteredList.size(); i += pageSize){
-            newList.add(new ArrayList<T>(filteredList.subList
-                    (i, Math.min(filteredList.size(), i + pageSize))));
-
-        }
-
-        return newList.get(page);
-    }
-    public static <T> List<T> paginate (Iterator<T> iterator, int page, int pageSize, Predicate<T> pred){
-        List<List<T>> newList = new ArrayList<List<T>>();
-        List<T> filteredList = new ArrayList<T>();
-        T obj;
-        while (iterator.hasNext()){
-            obj = iterator.next();
-            if (pred.predicate(obj)){
-                filteredList.add(obj);
-            }
-        }
-        for (int i = 0; i < filteredList.size(); i += pageSize){
-            newList.add(new ArrayList<T>(filteredList.subList
-                    (i, Math.min(filteredList.size(), i + pageSize))));
-
-        }
-
-        return newList.get(page);
-    }
 }
